@@ -33,6 +33,13 @@ def create_database():
     
     return cur, conn
 
+def datestyle(cur, conn):
+    '''
+    - SET datestyle into dmy
+    '''
+    cur.execute("SET DateStyle='dmy'")
+    conn.commit
+
 def drop_table(cur, conn):
     '''
     - Drops the employees table
