@@ -33,12 +33,6 @@ def create_database():
     
     return cur, conn
 
-def datestyle(cur, conn):
-    '''
-    - SET datestyle into dmy
-    '''
-    cur.execute("SET DateStyle='dmy'")
-    conn.commit
 
 def drop_table(cur, conn):
     '''
@@ -53,7 +47,14 @@ def create_table(cur, conn):
     '''
     cur.execute(create_employees_table)
     conn.commit()
-    
+
+def set_datetime(cur, conn):
+    '''
+    - SET DateStyle='dmy'
+    '''
+    cur.execute("SET DateStyle='dmy'")
+    conn.commit()
+
 def insert_table(cur, conn):
     '''
     - Insert the values from the coffeeshop.csv file into the employees table
@@ -76,6 +77,7 @@ def main():
     
     drop_table(cur, conn)
     create_table(cur, conn)
+    set_datetime(cur, conn)
     insert_table(cur, conn)
     
     conn.close()
